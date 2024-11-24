@@ -19,7 +19,6 @@ class NotificationScreen extends StatelessWidget {
         ),),
       ),
       body: ListView.builder(
-        
         itemCount: 3,
         shrinkWrap: true,
         itemBuilder: (context, index) => Column(
@@ -30,6 +29,7 @@ class NotificationScreen extends StatelessWidget {
                 height: 100,
                 width: double.infinity,
                 child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
                     Column(
@@ -52,8 +52,13 @@ class NotificationScreen extends StatelessWidget {
                         ),)
                       ],
                     ),
-                    Image.asset(
-                      ImageConstants.APPLOGO),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 10),
+                      child: Image.asset(
+                        height: 40,
+                        width: 40,
+                        ImageConstants.SIGNINSCREENLOGO),
+                    ),
                     IconButton(onPressed: (){}, icon: Icon(Icons.close))  
                   ],
                 ),

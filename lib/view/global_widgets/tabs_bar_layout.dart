@@ -4,12 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:play_store/view/apps_screen/tabs/categories_screen_apps.dart';
 import 'package:play_store/view/apps_screen/tabs/children_screen_apps.dart';
 import 'package:play_store/view/apps_screen/tabs/for_you_screen_apps.dart';
-import 'package:play_store/view/apps_screen/tabs/premium_screen_apps.dart';
 import 'package:play_store/view/apps_screen/tabs/top_chart_screen_apps.dart';
 import 'package:play_store/view/books_screen/tabs/audio_book_screen.dart';
 import 'package:play_store/view/books_screen/tabs/comics_screen.dart';
 import 'package:play_store/view/books_screen/tabs/e_books_screen.dart';
-import 'package:play_store/view/books_screen/tabs/new_releases.dart';
+import 'package:play_store/view/books_screen/tabs/genre_screen.dart';
 import 'package:play_store/view/books_screen/tabs/top_seller.dart';
 import 'package:play_store/view/games_screen/tabs/categories_screen.dart';
 import 'package:play_store/view/games_screen/tabs/children_screen.dart';
@@ -47,13 +46,13 @@ class TabsBarLayout extends StatelessWidget {
        t1="For you";
        t2="Top chart";
        t3="Children";
-       t4="Premium";
-       t5="Categories";
+       t4="Categories";
+       t5 = ""; 
+       
        screens=[
             ForYouScreenApps(),
             TopChartScreenApps(),
             ChildrenScreenApps(),
-            PremiumScreenApps(),
             CategoriesScreenApps()
       ];
     }
@@ -62,7 +61,7 @@ class TabsBarLayout extends StatelessWidget {
       t2 = "Audiobooks";
       t3 = "Comics";
       t4 = "Top seller";
-      t5 = "New releases";
+      t5 = "Genres";
       screens=[
             EBooksScreen(),
             AudioBookScreen(),
@@ -72,7 +71,7 @@ class TabsBarLayout extends StatelessWidget {
       ];
     }
     return DefaultTabController(
-      length: 5,
+      length: screens.length,
       child: Scaffold(
         backgroundColor: Colors.white,
         appBar: AppBar(
@@ -98,7 +97,7 @@ class TabsBarLayout extends StatelessWidget {
               Tab(text: t2),
               Tab(text: t3),
               Tab(text: t4),
-              Tab(text: t5),
+              if (t5.isNotEmpty) Tab(text: t5),
           ]),
         ),
         body: TabBarView(

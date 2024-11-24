@@ -5,6 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:play_store/utils/color_constant.dart';
 import 'package:play_store/view/global_widgets/circle_avatar_bottom_sheet.dart';
 import 'package:play_store/view/global_widgets/text_with_icon_container.dart';
+import 'package:play_store/view/search_screen/on_tap_search_screen.dart';
 
 class SearchScreen extends StatelessWidget {
   const SearchScreen({super.key});
@@ -14,33 +15,32 @@ class SearchScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: ColorConstant.white,
       appBar: AppBar(
+        
         backgroundColor: Colors.white,
         toolbarHeight: 65,
-        title: Container(
-          height: 42,
-          child: TextFormField(
-            textAlignVertical: TextAlignVertical.center,
-            decoration: InputDecoration(
-              filled: true,
-              fillColor: ColorConstant.SECONDARYCOLOR,
-              prefixIcon: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 15), 
-                child: Icon(Icons.search),
-              ),
-              hintText: "Search Apps & Games",
-              hintStyle: TextStyle(
-                fontSize: 14,
-                color: Colors.grey, 
-              ),
-              suffixIcon: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 15), 
-                child: Icon(Icons.mic_none),
-              ),
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(30),
-                borderSide: BorderSide.none,
-              ),
+        title: InkWell(
+          onTap: () {
+            Navigator.push(context, MaterialPageRoute(builder: (context) => OnTapSearchScreen(),));
+          },
+          child: Container(
+            padding: EdgeInsets.all(8),
+            height:45,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(25),
+              color: ColorConstant.SECONDARYCOLOR
             ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Icon(Icons.search),
+                Text("Search Apps & Games",style: GoogleFonts.roboto(
+                  fontSize: 13,
+                  color: Colors.grey.shade800,
+                  fontWeight: FontWeight.w400
+                )),
+                Icon(Icons.mic_none)
+              ],
+            )
           ),
         ),
         actions: [
@@ -49,13 +49,16 @@ class SearchScreen extends StatelessWidget {
         ],
       ),
       body: SingleChildScrollView(
-        child: Column(
-          children: [
-            _BuildYouMightLikeSection(),
-            _buildExploreGamesSection(),
-            _buildExploreAppsSection()
-
-          ],
+        child: Padding(
+          padding: const EdgeInsets.only(left: 10,right: 10),
+          child: Column(
+            children: [
+              _BuildYouMightLikeSection(),
+              _buildExploreGamesSection(),
+              _buildExploreAppsSection()
+          
+            ],
+          ),
         ),
       )
     );

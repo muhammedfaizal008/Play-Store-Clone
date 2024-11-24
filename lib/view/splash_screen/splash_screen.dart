@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:play_store/view/bottom_navbar_screen/bottom_navbar_screen.dart';
+import 'package:play_store/view/sign_in_screen.dart/sign_in_screen.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -14,7 +15,7 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     Future.delayed(Duration(seconds: 1),(){
-      Navigator.pushReplacement(context, MaterialPageRoute(builder:(context) => BottomNavbarScreen(),));
+      Navigator.pushReplacement(context, MaterialPageRoute(builder:(context) => SignInScreen(),));
     });
     super.initState();
   }
