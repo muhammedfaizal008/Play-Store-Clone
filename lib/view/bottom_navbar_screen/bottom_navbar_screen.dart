@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:play_store/utils/color_constant.dart';
 import 'package:play_store/view/apps_screen/apps_screen.dart';
 import 'package:play_store/view/books_screen/books_screen.dart';
 import 'package:play_store/view/games_screen/games_screen.dart';
@@ -37,7 +38,7 @@ class _BottomNavbarScreenState extends State<BottomNavbarScreen> {
             highlightColor: Colors.transparent,
             splashFactory: NoSplash.splashFactory,),
           child: BottomNavigationBar(
-            backgroundColor: Colors.white,
+            backgroundColor: Color.fromARGB(255, 227, 242, 255),
             unselectedItemColor: Color.fromARGB(255, 79, 79, 79),
             selectedItemColor: Color.fromARGB(255, 1, 59, 107),
             showSelectedLabels: true,

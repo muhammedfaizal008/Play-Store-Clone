@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:play_store/utils/color_constant.dart';
 import 'package:play_store/view/dummydb.dart';
+import 'package:play_store/view/individual_app_screen/individual_app_screen.dart';
 
 class TopSeller extends StatelessWidget {
   const TopSeller({super.key});
@@ -13,10 +14,10 @@ class TopSeller extends StatelessWidget {
         children: [
           Expanded(
             child: ListView.builder(
-              itemCount: Dummydb.appName.length,
+              itemCount: Dummydb.booksDetails.length,
               itemBuilder: (context, index) => InkWell(
                 onTap: () {
-                  // Navigator.push(context, MaterialPageRoute(builder: (context) => IndividualAppScreen(selectedAppIndex: index, dBName: Dummydb.appName),));
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => IndividualAppScreen(selectedAppIndex: index, dBName: Dummydb.booksDetails),));
                 },
                 child: Card( 
                   margin: EdgeInsets.zero,

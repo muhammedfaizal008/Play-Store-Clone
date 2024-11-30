@@ -1,4 +1,8 @@
+// ignore_for_file: prefer_const_literals_to_create_immutables
+
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:play_store/view/sign_in_screen.dart/password_screen.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
@@ -7,88 +11,104 @@ class LoginScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      body: SafeArea(
+      body: Center(
         child: Column(
           children: [
-            Expanded(
-              flex: 1,
-              
-              child: Center(
-                child: Image.asset(
-                  'assets/images/GoogleLogo.png', 
-                  height: 100,
+            Image.asset(
+              height: 100,
+              width: 200,
+              "assets/images/GoogleLogo.png"),
+            Padding(
+              padding: const EdgeInsets.all(10),
+              child: Text("Sign in",style: GoogleFonts.roboto(
+                fontSize: 20,
+                fontWeight: FontWeight.w600
+              ),),
+            ),
+            Align(
+              alignment: Alignment.center,
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 15),
+                child: Text("Use your Google Account.The account will be added to this device and available to other Google apps",style: GoogleFonts.roboto(
+                  fontSize: 14,
+                  fontWeight: FontWeight.w400
+                ),),
+              ),
+            ),
+            SizedBox(height: 10,),
+            Text("Learn more about using your account",style: GoogleFonts.roboto(
+              fontSize: 14,
+              fontWeight: FontWeight.w500,
+              color: Colors.blueAccent.shade700
+            ),),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: TextFormField(
+                decoration: InputDecoration(
+                  enabled: true,
+                  enabledBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.grey)),
+                  hintText: "Email or phone",
+                  hintStyle: GoogleFonts.roboto(
+                    fontSize: 12
+                  ),
+                  label: Text("Email or phone"),
+                  labelStyle: GoogleFonts.roboto(
+                    fontSize: 14
+                  ),
+                  border: OutlineInputBorder(),
+                  floatingLabelStyle: TextStyle(
+                    color: Colors.blueAccent.shade700,
+                  ),
+                  focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.blueAccent.shade700))
                 ),
               ),
             ),
-            Expanded(
-              flex: 1,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: const [
-                  Text(
-                    'Sign in with Google',
-                    style: TextStyle(
-                      fontSize: 24,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  SizedBox(height: 8),
-                  Text(
-                    'Continue to access your account',
-                    style: TextStyle(
-                      fontSize: 16,
-                      color: Colors.grey,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-
-            Expanded(
-              flex: 2,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 32.0),
-                    child: ElevatedButton.icon(
-                      onPressed: () {}, 
-                      icon: Image.asset(
-                        'assets/google_logo.png',
-                        height: 24,
-                        width: 24,
+            Align(
+              alignment: Alignment.centerLeft,
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text("Forgot email?",style: GoogleFonts.roboto(
+                fontSize: 14,
+                fontWeight: FontWeight.w500,
+                color: Colors.blueAccent.shade700
+              ),),
+              )),
+              Align(
+              alignment: Alignment.centerLeft,
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text("Create account",style: GoogleFonts.roboto(
+                fontSize: 14,
+                fontWeight: FontWeight.w500,
+                color: Colors.blueAccent.shade700
+              ),),
+              )),
+              Spacer(),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 15,vertical: 20),
+                child: Align(
+                  alignment: Alignment.bottomRight,
+                  child: ElevatedButton(
+                    style: ButtonStyle(
+                      foregroundColor: WidgetStateProperty.all(Colors.white),
+                      backgroundColor: WidgetStateProperty.all(Colors.blueAccent.shade700),
+                      shape: WidgetStateProperty.all(
+                        RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
                       ),
-                      label: const Text(
-                        'Sign in with Google',
-                        style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.white,
-                       
-                        side: const BorderSide(color: Colors.grey),
-                        padding: const EdgeInsets.symmetric(vertical: 12.0),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(8.0),
+                      textStyle: WidgetStateProperty.all(
+                        TextStyle(
+                          fontSize: 16, 
                         ),
                       ),
                     ),
-                  ),
-
-                  const SizedBox(height: 16),
-                  const Text(
-                    'By signing in, you agree to our Terms & Conditions',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontSize: 14,
-                      color: Colors.grey,
-                    ),
-                  ),
-                ],
-              ),
-            ),
+                    onPressed: () {
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => PasswordScreen(),));
+                    },
+                    child: Text("Next"),
+                  )
+                
+                ),
+              )
           ],
         ),
       ),

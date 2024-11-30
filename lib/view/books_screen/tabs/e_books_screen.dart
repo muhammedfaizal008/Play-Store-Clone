@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:play_store/view/dummydb.dart';
+import 'package:play_store/view/individual_app_screen/individual_app_screen.dart';
 
 class EBooksScreen extends StatelessWidget {
   const EBooksScreen({super.key});
@@ -60,7 +61,7 @@ class EbookScrollableWidget extends StatelessWidget {
             padding: index==0?EdgeInsets.only(left: 25,top: 10):EdgeInsets.only(top: 10),
             child: InkWell(
               onTap: () {
-                // Navigator.push(context, MaterialPageRoute(builder: (context) => IndividualAppScreen(selectedAppIndex: index, dBName: dbname),));
+                Navigator.push(context, MaterialPageRoute(builder: (context) => IndividualAppScreen(selectedAppIndex: index, dBName: Dummydb.booksDetails),));
               },
               child: SizedBox(
                 width: 90,

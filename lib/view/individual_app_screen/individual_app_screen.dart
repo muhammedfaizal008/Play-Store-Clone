@@ -3,6 +3,9 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:play_store/utils/color_constant.dart';
+import 'package:flutter_rating_stars/flutter_rating_stars.dart';
+import 'package:play_store/view/dummydb.dart';
+import 'package:play_store/view/global_widgets/scrollable_single_app.dart';
 
 class IndividualAppScreen extends StatefulWidget {
   final List<Map<String, String>> dBName; // Database name
@@ -20,9 +23,10 @@ class IndividualAppScreen extends StatefulWidget {
 
 class _IndividualAppScreenState extends State<IndividualAppScreen> {
   bool isInstalling = false;
-
+  double value = 3.5;
   @override
   Widget build(BuildContext context) {
+    
     List appDataLabels = [
       {
         "title": (widget.dBName[widget.selectedAppIndex]["ratings"] ?? "N/A") + " ★",
@@ -48,63 +52,183 @@ class _IndividualAppScreenState extends State<IndividualAppScreen> {
         ],
       ),
       body: SingleChildScrollView(
-        padding: const EdgeInsets.all(8.0),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            firstSection(appDataLabels),
+            Padding(
+              padding: const EdgeInsets.all(10),
+              child: firstSection(appDataLabels),
+            ),
             SizedBox(height: 10),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                SizedBox(
-                  height: 120,
-                  child: ListView.builder(
-                    itemCount: 5,
-                    shrinkWrap: true,
-                    scrollDirection: Axis.horizontal,
-                    itemBuilder: (context, index) => Padding(
-                      padding: const EdgeInsets.all(5),
-                      child: Container(
-                        height: 110,
-                        width: 80,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          color: Colors.grey,
-                        ),
-                      ),
+            Padding(
+              padding: const EdgeInsets.all(10),
+              child: secondSection(),
+            ),
+            SizedBox(height: 10),
+            Padding(
+              padding: const EdgeInsets.all(10),
+              child: thirdSection(),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  ScrollableSingleApp(dbname: Dummydb.gameName, title: "Similar games"),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Row(
+                      children: [
+                        Icon(Icons.rotate_left),
+                        SizedBox(width: 10,),
+                        Text("Google Play refund policy",style: GoogleFonts.roboto(
+                          fontSize: 14,
+                          fontWeight: FontWeight.w500
+                        ),),
+                      ],
                     ),
                   ),
-                ),
-                SizedBox(height: 10),
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      "About this app",
-                      style: GoogleFonts.roboto(fontSize: 14, fontWeight: FontWeight.w600),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(right: 10),
-                      child: Icon(Icons.arrow_forward),
-                    ),
-                  ],
-                ),
-                SizedBox(height: 10),
-                Text(
-                  "Brief description about the app.",
-                  style: GoogleFonts.roboto(
-                    fontSize: 12,
-                    fontWeight: FontWeight.normal,
-                    color: ColorConstant.GREYCOLOR,
+                  SizedBox(height: 10,),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text("All prices include GST.",style: GoogleFonts.roboto(
+                          fontSize: 14,
+                          fontWeight: FontWeight.w500
+                  ),),
                   ),
-                )
-              ],
+                  SizedBox(height: 10,),
+                ],
+              ),
             )
           ],
         ),
       ),
     );
+  }
+
+  Column thirdSection() {
+    return Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text("Rate this app",
+                  style: GoogleFonts.roboto(fontSize: 16, fontWeight: FontWeight.w600),),
+              Text("tell others what you think",
+                  style: GoogleFonts.roboto(fontSize: 12, fontWeight: FontWeight.normal),),
+              SizedBox(height: 10),    
+              Align(
+                alignment: Alignment.center,
+                child: RatingStars(
+                value: value,
+                onValueChanged: (v) {
+                  //
+                  setState(() {
+                    value = v;
+                  });
+                },
+                starBuilder: (index, color) => Icon(
+                  Icons.star,
+                  color: color,
+                  size: 40,
+                ),
+                starCount: 5,
+                starSize: 70,
+                valueLabelColor: const Color(0xff9b9b9b),
+                valueLabelTextStyle: const TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.w400,
+                    fontStyle: FontStyle.normal,
+                    fontSize: 12.0),
+                valueLabelRadius: 10,
+                maxValue: 5,
+                starSpacing: 2,
+                maxValueVisibility: true,
+                valueLabelVisibility:false,
+                valueLabelPadding:
+                const EdgeInsets.symmetric(vertical: 1, horizontal: 8),
+                valueLabelMargin: const EdgeInsets.only(right: 8),
+                starOffColor: const Color(0xffe7e8ea),
+                starColor: Colors.yellow,
+              ),
+              ),
+              Text("Write a review",style: GoogleFonts.roboto(
+                fontSize: 14,
+                fontWeight: FontWeight.w400,
+                color: Colors.blue.shade900
+              ),)
+            ],
+          );
+  }
+
+  Column secondSection() {
+    return Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              SizedBox(
+                height: 180,
+                child: ListView.builder(
+                  itemCount: 5,
+                  shrinkWrap: true,
+                  scrollDirection: Axis.horizontal,
+                  itemBuilder: (context, index) => Padding(
+                    padding: const EdgeInsets.all(5),
+                    child: Container(
+                      height: 180,
+                      width: 200,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        color: Colors.grey,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              SizedBox(height: 10),
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    "About this app",
+                    style: GoogleFonts.roboto(fontSize: 16, fontWeight: FontWeight.w600),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(right: 10),
+                    child: Icon(Icons.arrow_forward),
+                  ),
+                ],
+              ),
+              SizedBox(height: 10),
+              Text(
+                "Brief description about the app.",
+                style: GoogleFonts.roboto(
+                  fontSize: 14,
+                  fontWeight: FontWeight.normal,
+                  color: ColorConstant.GREYCOLOR,
+                ),
+              ),
+              SizedBox(height: 10),
+              Row(
+                children: [
+                  Text("Data safety",
+                    style: GoogleFonts.roboto(fontSize: 16, fontWeight: FontWeight.w600),),
+                  Spacer(),
+                  Padding(
+                    padding: const EdgeInsets.only(right: 10),
+                    child: Icon(Icons.arrow_forward),
+                  ),
+                ],
+              ),
+              SizedBox(height: 10),
+              Text(
+                "About the data security of the app.",
+                style: GoogleFonts.roboto(
+                  fontSize: 14,
+                  fontWeight: FontWeight.normal,
+                  color: ColorConstant.GREYCOLOR,
+                ),
+              ),
+            ],
+          );
   }
 
   Column firstSection(List<dynamic> appDataLabels) {

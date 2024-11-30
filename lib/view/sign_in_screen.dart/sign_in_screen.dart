@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:play_store/utils/color_constant.dart';
 import 'package:play_store/utils/image_constants.dart';
 import 'package:play_store/view/bottom_navbar_screen/bottom_navbar_screen.dart';
+import 'package:play_store/view/sign_in_screen.dart/login_screen.dart';
 
 class SignInScreen extends StatelessWidget {
   const SignInScreen({super.key});
@@ -63,7 +64,7 @@ class SignInScreen extends StatelessWidget {
                 foregroundColor: WidgetStatePropertyAll(Colors.white),
                 shape: WidgetStatePropertyAll(RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)))),
               onPressed: (){
-                Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => BottomNavbarScreen(),));
+                Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => LoginScreen(),));
               }, child: Text("Sign in"))
           ],
         ),
